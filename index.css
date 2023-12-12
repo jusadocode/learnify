@@ -1,0 +1,44 @@
+* {
+    /* border: 1px solid black; */
+}
+.root {
+    font-size: 16px;
+    
+}
+
+.main-container{
+    display: grid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 2rem;
+}
+
+.header-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card-section {
+    background-color: aliceblue;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px;
+    grid-template-rows: minmax(250px,auto);
+    gap: 3rem;
+}
+
+.chapter-card {
+    border-radius: 10px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.5s ease-in-out, color 0.5s ease-in-out;
+    /* transition: color 0.5s; */
+}
+
+.chapter-card:hover {
+    scale: 1.1;
+    color: white;
+    cursor:pointer;
+}
