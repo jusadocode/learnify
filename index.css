@@ -3,6 +3,10 @@
     font-size: 16px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .main-container {
     display: grid;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

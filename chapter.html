@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+      <h1>Dynamic Programming: An Overview</h1>
+    </header>
+  
+    <main>
+      <section>
+        <h2>Introduction to Dynamic Programming</h2>
+        <p>
+          Dynamic programming is a method for efficiently solving a broad range of search and optimization problems
+          which exhibit the property of overlapping subproblems.
+        </p>
+        <p>
+          It involves breaking down a problem into smaller overlapping subproblems and solving each subproblem only once,
+          saving its answer in a table to avoid redundant work when the same subproblem arises.
+        </p>
+      </section>
+  
+      <section>
+        <h2>Key Concepts</h2>
+        <ul>
+          <li>Optimal Substructure</li>
+          <li>Overlapping Subproblems</li>
+          <li>Memoization</li>
+          <li>Tabulation</li>
+        </ul>
+      </section>
+  
+      <section>
+        <h2>Example: Fibonacci Sequence</h2>
+        <p>
+          The Fibonacci sequence can be efficiently calculated using dynamic programming, avoiding redundant calculations
+          by storing previously computed values.
+        </p>
+        <div class="code-block">
+          <pre>
+            function fibonacci(n, memo = {}) {
+              if (n <= 1) return n;
+              if (memo[n]) return memo[n];
+  
+              memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+              return memo[n];
+            }
+  
+            console.log(fibonacci(5)); // Example usage
+          </pre>
+        </div>
+      </section>
+  
+      <!-- Add more sections for additional content -->
+  
+    </main>
+  
+  </body>
+</html>
