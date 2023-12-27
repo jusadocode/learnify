@@ -7,19 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const questions = [
     {
-      type: 'multiple-choice',
-      content: 'What is dynamic programming?',
-      choices: [
-        'A programming paradigm',
-        'A programming language',
-        'An algorithmic optimization technique',
-        'A type of variable',
-      ],
-      correctAnswer: 'An algorithmic optimization technique',
+      type: 'true-false',
+      content: 'Dynamic programming is a programming paradigm.',
+      correctAnswer: false,
     },
     {
       type: 'multiple-choice',
-      content: 'What is memoization in dynamic programming?',
+      content: 'What does memoization involve in dynamic programming?',
       choices: [
         'Storing and reusing previously computed results',
         'Recording audio during programming',
@@ -29,15 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
       correctAnswer: 'Storing and reusing previously computed results',
     },
     {
-      type: 'multiple-choice',
-      content: 'Which dynamic programming approach involves bottom-up computation?',
-      choices: [
-        'Memoization',
-        'Tabulation',
-        'Recursion',
-        'Iteration',
-      ],
-      correctAnswer: 'Tabulation',
+      type: 'fill-in-the-blank',
+      content: 'Dynamic programming involves breaking down a problem into smaller overlapping _____________.',
+      correctAnswer: 'subproblems',
+    },
+    {
+      type: 'true-false',
+      content: 'Tabulation is a dynamic programming approach that involves top-down computation.',
+      correctAnswer: false,
     },
     {
       type: 'multiple-choice',
@@ -49,17 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
         'O(n^2)',
       ],
       correctAnswer: 'O(n)',
-    },
-    {
-      type: 'multiple-choice',
-      content: 'In dynamic programming, what is an optimal substructure?',
-      choices: [
-        'A programming language feature',
-        'A subproblem that has an optimal solution',
-        'A type of data structure',
-        'An algorithmic complexity',
-      ],
-      correctAnswer: 'A subproblem that has an optimal solution',
     },
   ];
 
@@ -89,11 +71,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add your logic for handling the user's answer here
     // You can compare the user's answer with the correct answer and update the UI accordingly
 
-    // Example logic for multiple-choice questions
-    const selectedChoice = document.querySelector(`input[name="question_${currentQuestionIndex}"]:checked`);
-    if (selectedChoice && selectedChoice.value === questions[currentQuestionIndex].correctAnswer) {
-      correctAnswers++;
+    switch (questions[currentQuestionIndex].type) {
+    case 'fill-in-the-blank':
+      const input = document.querySelector('input');
+        
+      // Convert the user's answer and the correct answer to lowercase for case-insensitive comparison
+      const userAnswer = input.value.toLowerCase();
+      const correctAnswer = questions[currentQuestionIndex].correctAnswer.toLowerCase();
+    
+      if (userAnswer === correctAnswer) {
+        correctAnswers++;
+      }
+      break;
+    
+    case 'multiple-choice':
+    case 'true-false':
+      const selectedChoice = document.querySelector(`input[name="question_${currentQuestionIndex}"]:checked`);
+    
+      if (!selectedChoice) {
+        alert('Select at least one option');
+        return;
+      }
+    
+      if (selectedChoice.value === questions[currentQuestionIndex].correctAnswer) {
+        correctAnswers++;
+      }
+      break;
     }
+    
+
+    
+    // Example logic for multiple-choice questions
+    
     // Move to the next question or end the quiz if all questions are answered
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
