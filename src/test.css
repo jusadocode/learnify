@@ -31,7 +31,7 @@ body {
   }
   
   #timer {
-    font-size: 24px;
+    font-size: 1rem;
     color: #e74c3c; /* Red color for the timer */
   }
   
@@ -57,4 +57,76 @@ body {
   .fade-in-out.show {
     opacity: 1;
   }
+
+  #countdown {
+    position: relative;
+    margin: auto;
+    /* margin-top: 100px; */
+    height: 80px;
+    width: 80px;
+    text-align: center;
+  }
   
+  #countdown-number {
+    color: rgb(0, 0, 0);
+    display: inline-block;
+    line-height: 80px;
+  }
+  
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+  }
+  
+  svg circle {
+    stroke-dasharray: 190px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 3px;
+    stroke: rgb(59, 59, 59);
+    fill: none;
+    animation: countdown 180s linear infinite forwards;
+  }
+  
+  @keyframes countdown {
+    from {
+      stroke-dashoffset: 0px;
+    }
+    to {
+      stroke-dashoffset: 190px;
+    }
+  }
+  
+  #result-container {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #result-container p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Optional: Add styles for a success message */
+  #result-container.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+  
+  /* Optional: Add styles for a warning message */
+  #result-container.warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+  }

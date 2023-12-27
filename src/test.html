@@ -15,13 +15,16 @@
   </header>
 
   <main>
-    <section id="question-section">
+    <section id="question-section" class="fade-in-out">
       <!-- Questions will be dynamically loaded here -->
     </section>
 
-    <section id="timer-section">
-      <p id="timer">00:00</p>
-    </section>
+    <div id="countdown">
+        <div id="countdown-number"></div>
+        <svg>
+          <circle r="30" cx="40" cy="40"></circle>
+        </svg>
+      </div>
 
     <section id="submit-section">
       <button id="submit-button">Submit</button>

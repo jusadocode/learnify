@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const timerDuration = 180; // 5 minutes
   let timer = timerDuration;
-  const timerElement = document.getElementById('timer');
+  const timerElement = document.getElementById('countdown-number');
   const questionSection = document.getElementById('question-section');
   const submitButton = document.getElementById('submit-button');
 
@@ -63,27 +63,72 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   ];
 
+  let correctAnswers = 0;
   let currentQuestionIndex = 0;
 
   function showCurrentQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     const questionElement = createQuestionElement(currentQuestion, currentQuestionIndex);
-    questionSection.innerHTML = ''; // Clear previous question
-    questionSection.appendChild(questionElement);
+  
+    // Apply fade-out effect to the current question
+    questionSection.classList.remove('show');
+  
+    // Wait for the fade-out effect to complete before proceeding
+    setTimeout(() => {
+      // Clear previous question
+      questionSection.innerHTML = '';
+      questionSection.appendChild(questionElement);
+  
+      // Apply fade-in effect to the new question
+      questionSection.classList.add('show');
+    }, 500); // Set the timeout to match the transition duration
   }
+  
 
   function handleQuestionSubmission() {
     // Add your logic for handling the user's answer here
     // You can compare the user's answer with the correct answer and update the UI accordingly
 
+    // Example logic for multiple-choice questions
+    const selectedChoice = document.querySelector(`input[name="question_${currentQuestionIndex}"]:checked`);
+    if (selectedChoice && selectedChoice.value === questions[currentQuestionIndex].correctAnswer) {
+      correctAnswers++;
+    }
     // Move to the next question or end the quiz if all questions are answered
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
       showCurrentQuestion();
     } else {
       clearInterval(intervalId);
-      alert('Quiz completed! Submit your answers.');
+      displayQuizResult();
+      submitButton.disabled = true;
       // Add code to handle quiz completion
+    }
+  }
+
+  function displayQuizResult() {
+    const percentageCorrect = (correctAnswers / questions.length) * 100;
+    const resultMessage = getResultMessage(percentageCorrect);
+
+    // Create a result container dynamically
+    const resultContainer = document.createElement('div');
+    resultContainer.id = 'result-container';
+    // Append the result container to the document body or any desired location
+    document.body.appendChild(resultContainer);
+    // Display the result
+    resultContainer.innerHTML = `<p>You scored ${percentageCorrect.toFixed(2)}%.</p><p>${resultMessage}</p>`;
+    resultContainer.classList.add('show');
+  }
+
+  function getResultMessage(percentageCorrect) {
+    if (percentageCorrect === 100) {
+      return 'Congratulations! You got all the answers correct. Excellent job!';
+    } else if (percentageCorrect >= 75) {
+      return 'Great job! You performed well. Keep it up!';
+    } else if (percentageCorrect >= 50) {
+      return 'Good effort! You\'re making progress.';
+    } else {
+      return 'You may want to review the material and try again. Keep learning!';
     }
   }
 
@@ -98,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
       clearInterval(intervalId);
       alert('Time is up! Submit your answers.');
       // Add code to handle when the timer reaches 0
+
     }
 
     timer--;
