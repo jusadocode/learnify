@@ -1,4 +1,5 @@
-Current task: add routing to the result
+Current task: implement firebase and firebase auth into project
+Last task: add routing to the result
 
 Tasks:
 
@@ -9,5 +10,3 @@ Save:
 Chapter progress
 Test results
 Test durations
-
-Current task:
