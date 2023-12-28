@@ -51,10 +51,14 @@ function completeSection() {
 function moveToNextPage() {
 
   let matches = window.location.href.match(/dppage(\d+)/);
-  let pageNum = ++matches[1];
+  console.log(matches);
+  let chapterNum = matches[1];
 
-  let nextPage = `./dppage${pageNum}.html`;
-  window.location.href = nextPage;
+  let matchesTopic = window.location.href.match(/\/([^\/\d?]+)\d*\.html/);
+  let topicName = matchesTopic[1];
+
+  let testPage = `./test.html?topic=${topicName}&chapter=${chapterNum}`;
+  window.location.href = testPage;
 }
 
 fillButton.addEventListener('mousedown', () => {

@@ -1,4 +1,13 @@
-Different test variations - (eg right / wrong, multiple choice, fill in the blanks etc.)
+Current task: add routing to the result
+
+Tasks:
 
 Login
 
+Database
+Save: 
+Chapter progress
+Test results
+Test durations
+
+Current task:

@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const questionSection = document.getElementById('question-section');
   const submitButton = document.getElementById('submit-button');
 
+  const queryParams = new URLSearchParams(window.location.search);
+  let chapterNum = queryParams.get('chapter');
+  const topicName = queryParams.get('topic');
+
   const questions = [
     {
       type: 'true-false',
@@ -81,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
       if (userAnswer === correctAnswer) {
         correctAnswers++;
+        console.log(userAnswer, questions[currentQuestionIndex].correctAnswer);
       }
       break;
     
@@ -93,8 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
     
-      if (selectedChoice.value === questions[currentQuestionIndex].correctAnswer) {
+      // Lowering the case because of True(true), False(false)
+      if (selectedChoice.value.toLowerCase() === questions[currentQuestionIndex].correctAnswer.toString().toLowerCase()) {
         correctAnswers++;
+        console.log(selectedChoice.value, questions[currentQuestionIndex].correctAnswer);
       }
       break;
     }
@@ -125,8 +132,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // Append the result container to the document body or any desired location
     document.body.appendChild(resultContainer);
     // Display the result
-    resultContainer.innerHTML = `<p>You scored ${percentageCorrect.toFixed(2)}%.</p><p>${resultMessage}</p>`;
+    resultContainer.innerHTML = `<p>You scored ${percentageCorrect.toFixed(2)}%.</p><p>${resultMessage}</p>\n `;
+    resultContainer.innerHTML += `<p>Time duration: ${getRemainingTime()}</p>\n`;
     resultContainer.classList.add('show');
+
+    let chapterButton = submitButton.cloneNode();
+    chapterButton.textContent = `Revisit chapter ${chapterNum}`;
+    chapterButton.addEventListener('click', () => window.location.href = `${topicName}${chapterNum}.html`);
+    resultContainer.appendChild(chapterButton);
+
+    if(percentageCorrect >= 80) {
+      let moveToNextChapterButton = chapterButton.cloneNode();
+      moveToNextChapterButton.textContent = 'Continue';
+      moveToNextChapterButton.addEventListener('click', () => window.location.href = `${topicName}${++chapterNum}.html`);
+      resultContainer.appendChild(moveToNextChapterButton);
+    }
+
+
+
   }
 
   function getResultMessage(percentageCorrect) {
@@ -161,6 +184,21 @@ document.addEventListener('DOMContentLoaded', function () {
   // Example function to format time (add leading zeros)
   function formatTime(time) {
     return time < 10 ? `0${time}` : time;
+  }
+  function getRemainingTime() {
+    const remainingTime = timerDuration - timer;
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    
+    let timeString = '';
+    if(minutes > 0)
+      timeString += (minutes + ' minutes ');
+
+    if(seconds > 0)
+      timeString += (seconds + ' seconds ');
+
+    return timeString;
+    
   }
 
   // Example event listener for the submit button
