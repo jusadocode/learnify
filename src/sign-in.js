@@ -2,7 +2,7 @@ import {initializeApp} from 'firebase/app';
 import firebaseConfig from '../configs/firebase.json';
 import { getAuth,onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 
-import './sign-in.css';
+
 import { 
   hideLoginError, 
   showLoginState, 
