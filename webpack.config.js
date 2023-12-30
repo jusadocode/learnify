@@ -5,7 +5,8 @@ module.exports = {
   // The entry point file described above
   entry: {
     'bundle': './src/sign-in.js', // Entry point for sign-in page
-    'test-bundle': './src/test.js' // Entry point for test page
+    'test-bundle': './src/test.js', // Entry point for test page
+    'index-bundle': './src/index.js', // Entry point for sign-in page
   },
 
   // The location of the build folder described above
@@ -13,7 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
-  mode: 'development',
+  mode: 'none',
   // Optional and for development only. This provides the ability to
   // map the built code back to the original source format when debugging.
   devtool: 'eval-source-map',
@@ -42,25 +43,25 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       inject: 'body',
-      chunks: ['bundle']
+      chunks: ['index-bundle']
     }),
     new htmlWebpackPlugin({
       template: './src/dppage1.html',
       filename: 'dppage1.html',
       inject: 'body',
-      chunks: ['bundle']
+      chunks: ['index-bundle']
     }),
     new htmlWebpackPlugin({
       template: './src/dppage2.html',
       filename: 'dppage2.html',
       inject: 'body',
-      chunks: ['bundle']
+      chunks: ['index-bundle']
     }),
     new htmlWebpackPlugin({
       template: './src/dppage3.html',
       filename: 'dppage3.html',
       inject: 'body',
-      chunks: ['bundle']
+      chunks: ['index-bundle']
     }),
   ],
 };
