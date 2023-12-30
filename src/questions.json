@@ -1,0 +1,120 @@
+{
+    "chapter1": [
+      {
+        "type": "true-false",
+        "content": "Dynamic programming is a programming paradigm.",
+        "correctAnswer": false
+      },
+      {
+        "type": "multiple-choice",
+        "content": "What does memoization involve in dynamic programming?",
+        "choices": [
+          "Storing and reusing previously computed results",
+          "Recording audio during programming",
+          "A programming library",
+          "A type of debugging technique"
+        ],
+        "correctAnswer": "Storing and reusing previously computed results"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "content": "Dynamic programming involves breaking down a problem into smaller overlapping _____________.",
+        "correctAnswer": "subproblems"
+      },
+      {
+        "type": "true-false",
+        "content": "Tabulation is a dynamic programming approach that involves top-down computation.",
+        "correctAnswer": false
+      },
+      {
+        "type": "multiple-choice",
+        "content": "What is the time complexity of the Fibonacci sequence calculation using dynamic programming?",
+        "choices": [
+          "O(n)",
+          "O(2^n)",
+          "O(log n)",
+          "O(n^2)"
+        ],
+        "correctAnswer": "O(n)"
+      }
+    ],
+    "chapter2": [
+      {
+        "type": "true-false",
+        "content": "In dynamic programming, a greedy approach always guarantees an optimal solution.",
+        "correctAnswer": false
+      },
+      {
+        "type": "multiple-choice",
+        "content": "What is the primary advantage of bottom-up dynamic programming over top-down dynamic programming?",
+        "choices": [
+          "A. Reduced space complexity",
+          "B. Improved time complexity",
+          "C. Simplicity of implementation",
+          "D. More intuitive problem-solving"
+        ],
+        "correctAnswer": "A. Reduced space complexity"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "content": "Dynamic programming often involves the use of tables or ________ to store intermediate results.",
+        "correctAnswer": "Arrays"
+      },
+      {
+        "type": "true-false",
+        "content": "Memoization is an approach used only in recursive algorithms and not in iterative solutions.",
+        "correctAnswer": false
+      },
+      {
+        "type": "multiple-choice",
+        "content": "What is the key characteristic of problems that can be efficiently solved using dynamic programming?",
+        "choices": [
+          "A. Lack of overlapping subproblems",
+          "B. Optimal substructure",
+          "C. Linear time complexity",
+          "D. Non-recursive nature"
+        ],
+        "correctAnswer": "B. Optimal substructure"
+      }
+    ],
+    "chapter3": [
+      {
+        "type": "true-false",
+        "content": "In dynamic programming, the divide-and-conquer strategy is fundamentally different from the bottom-up approach.",
+        "correctAnswer": false
+      },
+      {
+        "type": "multiple-choice",
+        "content": "Which term is often associated with the process of combining solutions to subproblems in dynamic programming?",
+        "choices": [
+          "A. Accumulation",
+          "B. Fusion",
+          "C. Assembly",
+          "D. Aggregation"
+        ],
+        "correctAnswer": "D. Aggregation"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "content": "A recursive algorithm with memoization can be seen as a top-down approach, while dynamic programming often uses a bottom-up ________ approach.",
+        "correctAnswer": "Tabulation"
+      },
+      {
+        "type": "true-false",
+        "content": "The Knapsack problem is a classic example of a problem that can be solved efficiently using dynamic programming.",
+        "correctAnswer": true
+      },
+      {
+        "type": "multiple-choice",
+        "content": "What is a common strategy to optimize space usage in dynamic programming solutions?",
+        "choices": [
+          "A. Memoization",
+          "B. Tabulation",
+          "C. Recursion",
+          "D. Backtracking"
+        ],
+        "correctAnswer": "B. Tabulation"
+      }
+    ]
+  }
+  

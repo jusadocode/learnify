@@ -1,5 +1,5 @@
+import './index.css';
 const fillButton = document.querySelector('.myButton');
-console.log(fillButton);
 let fillAmount = 0;
 let fillIncrement;
 let complete = false;
@@ -7,6 +7,9 @@ const initalFillIncrement = 2;
 const fastFillIncrement = 8; // Adjust the increment value as needed
 const fillThreshold = 100;
 
+const chapterName = document.querySelector('header > h1').textContent;
+
+console.log(chapterName);
 
 let fillTimeout;
 function fillButtonColor() {
@@ -57,7 +60,7 @@ function moveToNextPage() {
   let matchesTopic = window.location.href.match(/\/([^\/\d?]+)\d*\.html/);
   let topicName = matchesTopic[1];
 
-  let testPage = `./test.html?topic=${topicName}&chapter=${chapterNum}`;
+  let testPage = `../dist/test.html?topic=${topicName}&chapter=${chapterNum}&chapterName=${chapterName}`;
   window.location.href = testPage;
 }
 

@@ -1,3 +1,6 @@
+import questionData from './questions.json';
+import './test.css';
+
 document.addEventListener('DOMContentLoaded', function () {
   const timerDuration = 180; // 5 minutes
   let timer = timerDuration;
@@ -8,46 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const queryParams = new URLSearchParams(window.location.search);
   let chapterNum = queryParams.get('chapter');
   const topicName = queryParams.get('topic');
+  const chapterName = queryParams.get('chapterName') + chapterNum;
 
-  const questions = [
-    {
-      type: 'true-false',
-      content: 'Dynamic programming is a programming paradigm.',
-      correctAnswer: false,
-    },
-    {
-      type: 'multiple-choice',
-      content: 'What does memoization involve in dynamic programming?',
-      choices: [
-        'Storing and reusing previously computed results',
-        'Recording audio during programming',
-        'A programming library',
-        'A type of debugging technique',
-      ],
-      correctAnswer: 'Storing and reusing previously computed results',
-    },
-    {
-      type: 'fill-in-the-blank',
-      content: 'Dynamic programming involves breaking down a problem into smaller overlapping _____________.',
-      correctAnswer: 'subproblems',
-    },
-    {
-      type: 'true-false',
-      content: 'Tabulation is a dynamic programming approach that involves top-down computation.',
-      correctAnswer: false,
-    },
-    {
-      type: 'multiple-choice',
-      content: 'What is the time complexity of the Fibonacci sequence calculation using dynamic programming?',
-      choices: [
-        'O(n)',
-        'O(2^n)',
-        'O(log n)',
-        'O(n^2)',
-      ],
-      correctAnswer: 'O(n)',
-    },
-  ];
+  document.querySelector('header > h1').textContent = chapterName;
+
+ 
+  const questions = questionData[`chapter${chapterNum}`];
+
+  console.log(questions);
 
   let correctAnswers = 0;
   let currentQuestionIndex = 0;
@@ -208,6 +179,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initial display of the first question
   showCurrentQuestion();
+
+  // Event listener for beforeunload
+  window.addEventListener('beforeunload', function (event) {
+    event.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+  });
+
+
 
   function createQuestionElement(question, index) {
     const questionContainer = document.createElement('div');

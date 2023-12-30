@@ -1,5 +1,7 @@
-Current task: implement firebase and firebase auth into project
-Last task: add routing to the result
+Current task: add database connection and save chapter num and which are passed
+
+Last task: implement firebase and firebase auth into project
+outdated task: add routing to the result
 
 Tasks:
 

@@ -1,7 +1,7 @@
 import {initializeApp} from 'firebase/app';
 import firebaseConfig from '../configs/firebase.json';
 import { getAuth,onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
-
+import './sign-in.css';
 
 import { 
   hideLoginError, 
@@ -13,6 +13,8 @@ import {
   btnSignup,
   btnLogout
 } from './ui.js';
+
+const homePage = '../src/index.html';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -28,17 +30,19 @@ const loginEmailPassword = async () => {
   const loginEmail = txtEmail.value;
   const loginPassword = txtPassword.value;
   
+  
   // step 1: try doing this w/o error handling, and then add try/catch
-  await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+  // await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
   
   // step 2: add error handling
-  // try {
-  //   await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-  // }
-  // catch(error) {
-  //   console.log(`There was an error: ${error}`)
-  //   showLoginError(error)
-  // }
+  try {
+    await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+
+  }
+  catch(error) {
+    console.log(`There was an error: ${error}`);
+    showLoginError(error);
+  }
 };
 
 // Create new account using email/password
@@ -60,8 +64,9 @@ const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log(user);
-      showApp();
+      // showApp();
       showLoginState(user);
+      window.location.href = homePage;
   
       hideLoginError();
       hideLinkError();
