@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /* 8 */
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiKey":"AIzaSyCiNZ6G1bFUmA7H8WMZKsg9geor0TZi62U","authDomain":"learnify-d8f3c.firebaseapp.com","projectId":"learnify-d8f3c","storageBucket":"learnify-d8f3c.appspot.com","messagingSenderId":"1075203561244","appId":"1:1075203561244:web:1291dcf3119057afefccd9","measurementId":"G-QK2L6P0VN7"}');
+module.exports = JSON.parse('{"apiKey":"AIzaSyAPrAovfxnd2C7Eg246-kgC_03jcBa2aA0","authDomain":"educational-software-3b907.firebaseapp.com","projectId":"educational-software-3b907","storageBucket":"educational-software-3b907.appspot.com","messagingSenderId":"231356661930","appId":"1:231356661930:web:1a8be70cfb07b04551d0d3","measurementId":"G-47BRSEWXEQ"}');
 
 /***/ }),
 /* 9 */

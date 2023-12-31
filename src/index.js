@@ -1,4 +1,5 @@
 import './index.css';
+import { database, _ref, _set } from './firebasedb';
 const fillButton = document.querySelector('.myButton');
 let fillAmount = 0;
 let fillIncrement;
@@ -10,6 +11,21 @@ const fillThreshold = 100;
 const chapterName = document.querySelector('header > h1').textContent;
 
 console.log(chapterName);
+
+console.log(database);
+
+function writeUserData() {
+  console.log('dbbbbbb');
+  const userId = prompt('user id');
+  const name = prompt('username');
+  const email = prompt('email');
+  _set(_ref(database, 'users/' + userId), {
+    username: name,
+    email: email
+  });
+}
+
+writeUserData();
 
 let fillTimeout;
 function fillButtonColor() {
