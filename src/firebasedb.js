@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import { getDatabase, ref, set, push, get } from 'firebase/database';
 import firebaseConfig from '../configs/firebase.json';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // Wont be using custom '123' userd id for simpler connection to the auth provided by firebase
@@ -10,14 +10,22 @@ const database = getDatabase(app);
 const auth = getAuth();
 let userId;
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    userId = user.uid;
-    console.log(user);
-  } else {
-    userId = null;
-  }
+const obtainUserId = new Promise((resolve) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      userId = user.uid;
+      console.log(user);
+    } else {
+      userId = null;
+    }
+    resolve(userId);
+  });
 });
+
+obtainUserId.then(() => {
+  console.log('USER ID AVAILABLE');
+});
+
 // this should be used for pictures, profile info etc.
 function writeUserData(name, email) {
 
@@ -47,8 +55,33 @@ function writeTestResult(topic, chapterNum, testScore, durationSeconds) {
     });
   
     console.log('SAVED SCORE TO DB');
+    console.log(topic, chapterNum, testScore, durationSeconds);
   } catch (error) {
     console.log('Saving to db error ' + error);
+  }
+}
+
+async function getStudentProgress() {
+  try {
+    await obtainUserId; // Wait for the userId to be defined
+
+
+    const userRef = ref(database, `users/${userId}`);
+    const snapshot = await get(userRef);
+
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+      if (userData) {
+        console.log(userData);
+        return userData;
+      } else {
+        console.log('No topics data for the user.');
+      }
+    } else {
+      console.log('User data does not exist.');
+    }
+  } catch (error) {
+    console.error('Error fetching student progress:', error);
   }
 }
 
@@ -65,7 +98,7 @@ function formatCurrentDate() {
   return(`${year}-${month}-${day} ${hour}:${minute}:${second}`);
 }
 
-// writeTestResult('dp', 1, 123, 80);
 
 
-export { app, database, writeUserData, writeTestResult };
+
+export { app, database, writeUserData, writeTestResult, getStudentProgress };

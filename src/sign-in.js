@@ -60,14 +60,12 @@ const createAccount = async () => {
   } 
 };
 
-const getUserObj = () => userObj;
 
 // Monitor auth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log(user);
-      userObj = user;
       showApp();
       showLoginState(user);
       // window.location.href = homePage;
@@ -93,5 +91,3 @@ btnLogout.addEventListener('click', logout);
   
 
 monitorAuthState();
-
-export {getUserObj};

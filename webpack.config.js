@@ -6,7 +6,8 @@ module.exports = {
   entry: {
     'sign-in-bundle': './src/sign-in.js', // Entry point for sign-in page
     'test-bundle': './src/test.js', // Entry point for test page
-    'index-bundle': './src/index.js', // Entry point for index page
+    'index-bundle': './src/index.js',
+    'progress-bundle': './src/student-progress.js', // Entry point for index page
   },
 
   // The location of the build folder described above
@@ -62,6 +63,12 @@ module.exports = {
       filename: 'dppage3.html',
       inject: 'body',
       chunks: ['index-bundle']
+    }),
+    new htmlWebpackPlugin({
+      template: './src/student-progress.html',
+      filename: 'student-progress.html',
+      inject: 'body',
+      chunks: ['progress-bundle']
     }),
   ],
 };
