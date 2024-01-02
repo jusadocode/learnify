@@ -4,9 +4,9 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   // The entry point file described above
   entry: {
-    'bundle': './src/sign-in.js', // Entry point for sign-in page
+    'sign-in-bundle': './src/sign-in.js', // Entry point for sign-in page
     'test-bundle': './src/test.js', // Entry point for test page
-    'index-bundle': './src/index.js', // Entry point for sign-in page
+    'index-bundle': './src/index.js', // Entry point for index page
   },
 
   // The location of the build folder described above
@@ -31,7 +31,7 @@ module.exports = {
       template: './src/sign-in.html',
       filename: 'sign-in.html',
       inject: 'body',
-      chunks: ['bundle']
+      chunks: ['sign-in-bundle']
     }),
     new htmlWebpackPlugin({
       template: './src/test.html',

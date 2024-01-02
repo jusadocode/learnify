@@ -3,6 +3,7 @@ import firebaseConfig from '../configs/firebase.json';
 import { getAuth,onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import './sign-in.css';
 
+
 import { 
   hideLoginError, 
   showLoginState, 
@@ -14,7 +15,6 @@ import {
   btnLogout
 } from './ui.js';
 
-const homePage = 'index.html';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -23,7 +23,7 @@ console.log(app);
 
 // maybe this isnt the proper way
 const auth = getAuth(app);
-
+console.log(auth);
 
 // Login using email/password
 const loginEmailPassword = async () => {
@@ -52,6 +52,7 @@ const createAccount = async () => {
   
   try {
     await createUserWithEmailAndPassword(auth, email, password);
+    
   }
   catch(error) {
     console.log(`There was an error: ${error}`);
@@ -59,11 +60,14 @@ const createAccount = async () => {
   } 
 };
 
+const getUserObj = () => userObj;
+
 // Monitor auth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log(user);
+      userObj = user;
       showApp();
       showLoginState(user);
       // window.location.href = homePage;
@@ -89,3 +93,5 @@ btnLogout.addEventListener('click', logout);
   
 
 monitorAuthState();
+
+export {getUserObj};

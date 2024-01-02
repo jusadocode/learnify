@@ -1,5 +1,4 @@
 import './index.css';
-import { database, _ref, _set } from './firebasedb';
 const fillButton = document.querySelector('.myButton');
 let fillAmount = 0;
 let fillIncrement;
@@ -12,20 +11,6 @@ const chapterName = document.querySelector('header > h1').textContent;
 
 console.log(chapterName);
 
-console.log(database);
-
-function writeUserData() {
-  console.log('dbbbbbb');
-  const userId = prompt('user id');
-  const name = prompt('username');
-  const email = prompt('email');
-  _set(_ref(database, 'users/' + userId), {
-    username: name,
-    email: email
-  });
-}
-
-writeUserData();
 
 let fillTimeout;
 function fillButtonColor() {
@@ -76,7 +61,7 @@ function moveToNextPage() {
   let matchesTopic = window.location.href.match(/\/([^\/\d?]+)\d*\.html/);
   let topicName = matchesTopic[1];
 
-  let testPage = `../dist/test.html?topic=${topicName}&chapter=${chapterNum}&chapterName=${chapterName}`;
+  let testPage = `test.html?topic=${topicName}&chapter=${chapterNum}&chapterName=${chapterName}`;
   window.location.href = testPage;
 }
 
@@ -90,7 +75,4 @@ fillButton.addEventListener('mouseup', () => {
   resetFill();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  
-});
   
