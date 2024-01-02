@@ -12,10 +12,29 @@ header {
 }
 
 main {
+  display: flex;
+  justify-content: space-around;
   padding: 20px;
 }
 
+.chart-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  width: 100vw;
+}
+
+.chart {
+  max-width: 300px;
+  max-height: 300px;
+  margin: 10px;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 .testResult {
+  text-align: center;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   padding: 10px;

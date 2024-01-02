@@ -1,5 +1,5 @@
 import { getStudentProgress } from './firebasedb';
-
+import { Chart } from 'chart.js/auto';
 import './student-progress.css';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -25,16 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function renderPieChart(container, passedCount, failedCount) {
     const canvas = document.createElement('canvas');
-
-    canvas.width = 150; // Set your desired width
-    canvas.height = 150; // Set your desired height
-    
+    canvas.classList.add('chart');
     container.appendChild(canvas);
 
-
-
     const ctx = canvas.getContext('2d');
-    new Chart(ctx, {
+    const pieChart = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: ['Passed', 'Failed'],
@@ -43,40 +38,17 @@ document.addEventListener('DOMContentLoaded', async () => {
           backgroundColor: ['#4CAF50', '#FF5252'],
         }],
       },
+      hoverOffset: 8
     });
+
+    pieChart.resize(50, 50);
   }
 
-  function renderLineChart(container, chapterLabels, passedData, failedData) {
-    const canvas = document.createElement('canvas');
-    
-    // Set your desired width and height for the line chart
-    canvas.width = 500;
-    canvas.height = 250;
-  
-    container.appendChild(canvas);
-  
-    const ctx = canvas.getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: chapterLabels,
-        datasets: [{
-          label: 'Passed',
-          borderColor: '#4CAF50',
-          data: passedData,
-          fill: false,
-        }, {
-          label: 'Failed',
-          borderColor: '#FF5252',
-          data: failedData,
-          fill: false,
-        }],
-      },
-    });
-  }
   function renderChapterTests(topic, tests) {
     const chapterContainer = document.createElement('div');
     chapterContainer.classList.add('testResult');
+
+    
 
     let passedTests = 0;
     let failedTests = 0;
@@ -97,9 +69,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       chapterContainer.appendChild(testElement);
     }
 
-    renderPieChart(chapterContainer, passedTests, failedTests);
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('chart-container');
+
+    chapterContainer.appendChild(chartContainer);
+
+    renderPieChart(chartContainer, passedTests, failedTests);
+    renderPieChart(chartContainer, passedTests, failedTests);
     progressContainer.appendChild(chapterContainer);
   }
+
 
   await renderStudentProgress(userData);
 });
