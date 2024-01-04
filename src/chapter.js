@@ -1,5 +1,5 @@
 import './index.css';
-// import { logout } from './sign-in';
+import { writeChapterOpenCount } from './firebasedb';
 
 const fillButton = document.querySelector('.myButton');
 
@@ -13,7 +13,8 @@ const fillThreshold = 100;
 
 
 const chapterName = document.querySelector('header > h1').textContent;
-
+let chapterNum;
+let topicName;
 console.log(chapterName);
 
 
@@ -57,14 +58,16 @@ function completeSection() {
   
 }
 
-function moveToNextPage() {
-
+function initializePageInfo() {
   let matches = window.location.href.match(/dppage(\d+)/);
   console.log(matches);
-  let chapterNum = matches[1];
+  chapterNum = matches[1];
 
   let matchesTopic = window.location.href.match(/\/([^\/\d?]+)\d*\.html/);
-  let topicName = matchesTopic[1];
+  topicName = matchesTopic[1];
+}
+
+function moveToNextPage() {
 
   let testPage = `test.html?topic=${topicName}&chapter=${chapterNum}&chapterName=${chapterName}`;
   window.location.href = testPage;
@@ -79,5 +82,7 @@ fillButton.addEventListener('mouseup', () => {
   // Reset fillAmount when the button is released
   resetFill();
 });
+initializePageInfo();
+document.addEventListener('DOMContentLoaded', await writeChapterOpenCount(topicName, chapterNum));
 
 

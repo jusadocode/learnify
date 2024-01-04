@@ -1,10 +1,12 @@
 import './index.css';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signOut,} from 'firebase/auth';
+import { getAuth, signOut} from 'firebase/auth';
 import firebaseConfig from '../configs/firebase.json';
 
-// cant import logout from sign-in.js because it break from some label
+
+// cant import logout from sign-in.js because it breaks from some label
 // Mask the damn css not loading first second into page
+
 const logoutButton = document.querySelector('.logOutButton');
 const statsButton = document.querySelector('.statsButton');
 

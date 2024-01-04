@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, push, get } from 'firebase/database';
+import { getDatabase, ref, set, push, get, runTransaction} from 'firebase/database';
 import firebaseConfig from '../configs/firebase.json';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // Wont be using custom '123' userd id for simpler connection to the auth provided by firebase
@@ -42,7 +42,6 @@ function writeUserData(name, email) {
 
 function writeTestResult(topic, chapterNum, testScore, durationSeconds) {
 
-  
   try {
     const testRef = ref(database, `users/${userId}/topics/${topic}/chapters/${chapterNum}/tests`);
     const newTestRef = push(testRef); // Generate a unique key for the new test
@@ -58,6 +57,24 @@ function writeTestResult(topic, chapterNum, testScore, durationSeconds) {
     console.log(topic, chapterNum, testScore, durationSeconds);
   } catch (error) {
     console.log('Saving to db error ' + error);
+  }
+}
+
+async function writeChapterOpenCount(topic, chapterNum) {
+  try {
+    await obtainUserId;
+
+    // console.log(userId);
+    const chapterRef = ref(database, `users/${userId}/topics/${topic}/chapters/${chapterNum}/openCount`);
+
+    // Using a transaction to ensure atomic updates
+    runTransaction(chapterRef, (currentOpenCount) => {
+      return (currentOpenCount || 0) + 1; // Increment the counter
+    });
+
+    console.log('Chapter open count updated');
+  } catch (error) {
+    console.log('Error updating chapter open count: ', error);
   }
 }
 
@@ -99,4 +116,4 @@ function formatCurrentDate() {
 }
 
 
-export { app, database, writeUserData, writeTestResult, getStudentProgress };
+export { app, database, writeUserData, writeTestResult, getStudentProgress, writeChapterOpenCount };
