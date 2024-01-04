@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const chapterContainer = document.createElement('div');
     chapterContainer.classList.add('testResult');
 
-    
-
+  
     let passedTests = 0;
     let failedTests = 0;
 
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderPieChart(chartContainer, passedTests, failedTests);
     progressContainer.appendChild(chapterContainer);
   }
-
 
   await renderStudentProgress(userData);
 });

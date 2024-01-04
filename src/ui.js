@@ -28,7 +28,8 @@ export const showApp = () => {
 };
 
 export const hideLoginError = () => {
-  divLoginError.style.display = 'none';
+  if(divLoginError)
+    divLoginError.style.display = 'none';
   lblLoginErrorMessage.innerHTML = '';
 };
 
@@ -43,7 +44,7 @@ export const showLoginError = (error) => {
 };
 
 export const showLoginState = (user) => {
-  lblAuthState.innerHTML = `You're logged in as ${user.displayName} (uid: ${user.uid}, email: ${user.email}) `;
+  lblAuthState.innerHTML = `You're logged in as ${user.displayName} email: ${user.email}) `;
 };
 
 hideLoginError();

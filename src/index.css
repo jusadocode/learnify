@@ -181,11 +181,52 @@ body {
     box-shadow: rgb(0, 0, 0) 5px 6px 29px 0px; border: 2px solid rgb(28, 110, 164); 
     display: inline-block;
   }
+
+  .statsButton:hover,
+  .logOutButton:hover,
   .myButton:hover {
   background: #1C6EA4; 
 }
+  .statsButton:active,
+  .logOutButton:active,
   .myButton:active {
     scale: 0.9;
+  }
+
+  .logOutButton {
+    position: absolute;
+    margin: 10px;
+    bottom: 0;
+    left: 0;
+    color: rgb(255, 255, 255); 
+    padding: 16px; 
+    border-radius: 7px; 
+    font-weight: normal; 
+    text-decoration: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    text-transform: none; 
+    background-color: #333333;
+    /* box-shadow: rgb(0, 0, 0) 5px 6px 29px 0px; border: 2px solid rgb(28, 110, 164);  */
+    display: inline-block;
+  }
+
+  .statsButton {
+    position: absolute;
+    margin: 10px;
+    right: 0;
+    bottom: 0;
+    color: rgb(255, 255, 255); 
+    padding: 16px; 
+    border-radius: 7px; 
+    font-weight: normal; 
+    text-decoration: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    text-transform: none; 
+    background-color: #333333;
+    /* box-shadow: rgb(0, 0, 0) 5px 6px 29px 0px; border: 2px solid rgb(28, 110, 164);  */
+    display: inline-block;
   }
 
   .material-symbols-outlined {

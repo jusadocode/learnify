@@ -1,78 +1,27 @@
 import './index.css';
-const fillButton = document.querySelector('.myButton');
-let fillAmount = 0;
-let fillIncrement;
-let complete = false;
-const initalFillIncrement = 2;
-const fastFillIncrement = 8; // Adjust the increment value as needed
-const fillThreshold = 100;
+import { initializeApp } from 'firebase/app';
+import { getAuth, signOut,} from 'firebase/auth';
+import firebaseConfig from '../configs/firebase.json';
 
-const chapterName = document.querySelector('header > h1').textContent;
-
-console.log(chapterName);
+// cant import logout from sign-in.js because it break from some label
+// Mask the damn css not loading first second into page
+const logoutButton = document.querySelector('.logOutButton');
+const statsButton = document.querySelector('.statsButton');
 
 
-let fillTimeout;
-function fillButtonColor() {
 
-  if(fillAmount >= (fillThreshold / 3))
-    fillIncrement = fastFillIncrement;
+const app = initializeApp(firebaseConfig);
 
-  fillAmount += fillIncrement;
-  fillButton.style.background = `linear-gradient(to right, #00FF32 ${fillAmount}%, transparent ${fillAmount}%)`;
+const auth = getAuth(app);
 
-  if (fillAmount >= fillThreshold) {
-    // Reset fillAmount when it reaches 100%
-    completeSection();
-    resetFill();
-  } else {
-    // Continue filling as long as the button is held
-    fillTimeout = setTimeout(fillButtonColor, 50);
-  }
-}
-
-function resetFill() {
-  // Reset fillAmount and background when the button is released
-  fillAmount = 0;
-  fillButton.style.background = '';
-  clearTimeout(fillTimeout);
-  fillIncrement = initalFillIncrement;
-}
-
-function completeSection() {
-  if(complete)
-    return;
-  // Code to save the chapter/section to the database
-  const icon = document.createElement('span');
-  icon.classList.add('material-symbols-outlined');
-  icon.innerText = 'done';
-  fillButton.appendChild(icon);
-  complete = true;
-  moveToNextPage();
+logoutButton.addEventListener('click', async () => {
   
-}
-
-function moveToNextPage() {
-
-  let matches = window.location.href.match(/dppage(\d+)/);
-  console.log(matches);
-  let chapterNum = matches[1];
-
-  let matchesTopic = window.location.href.match(/\/([^\/\d?]+)\d*\.html/);
-  let topicName = matchesTopic[1];
-
-  let testPage = `test.html?topic=${topicName}&chapter=${chapterNum}&chapterName=${chapterName}`;
-  window.location.href = testPage;
-}
-
-fillButton.addEventListener('mousedown', () => {
-
-  fillButtonColor();
+  signOut(auth);
+  location.href = './sign-in.html';
+  console.log('CLICK');
 });
 
-fillButton.addEventListener('mouseup', () => {
-  // Reset fillAmount when the button is released
-  resetFill();
+statsButton.addEventListener('click', async () => {
+  location.href = './student-progress.html';
 });
-
   

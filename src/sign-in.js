@@ -12,10 +12,11 @@ import {
   showLoginError, 
   btnLogin,
   btnSignup,
-  btnLogout
+  btnLogout,
 } from './ui.js';
 
 
+const homePage = './index.html';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -68,10 +69,10 @@ const monitorAuthState = async () => {
       console.log(user);
       showApp();
       showLoginState(user);
-      // window.location.href = homePage;
+      window.location.href = homePage;
   
       hideLoginError();
-      hideLinkError();
+      // hideLinkError();
     }
     else {
       showLoginForm();

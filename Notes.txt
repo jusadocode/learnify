@@ -1,4 +1,5 @@
-Current task: save more info to db and create statistics page
+Current task: add home button and log out
+Last task: save more info to db and create statistics page
 Last task: add database connection and save chapter num and which are passed
 Last task: implement firebase and firebase auth into project
 outdated task: add routing to the result

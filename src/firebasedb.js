@@ -99,6 +99,4 @@ function formatCurrentDate() {
 }
 
 
-
-
 export { app, database, writeUserData, writeTestResult, getStudentProgress };
